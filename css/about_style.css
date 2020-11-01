@@ -1,0 +1,27 @@
+html {
+      background-color: rgb(11, 5, 44);
+      color: rgb(247, 245, 243);
+}
+
+/* Main-Visual */
+section > article.main_visual {
+      position: absolute;
+      top: 250px;
+      left: 10%;
+}
+section > article.main_visual > div.profile-image{
+      float: left;
+      padding-right: 100px;
+}
+section > article.main_visual > div.profile-hi {float: left;}
+section > article.main_visual > div.profile-hi > h3{
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 130%;
+}
+section > article.main_visual > div.profile-hi > h3 > span {font-size: 30px; font-weight: 500;}
+section > article.main_visual > div.profile-hi > div.profile {margin-top: 110px; line-height: 200%;}
+section > article.main_visual > div.profile-hi > div.profile > a {text-decoration: none;}
+
+
+.button > a {padding:20px 100px}

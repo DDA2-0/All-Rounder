@@ -1,0 +1,142 @@
+#layer_1 {
+  position: fixed;
+  top:33vh;
+  left: -50px;
+  right: 0;
+  width: 990px;
+  margin: auto;
+}
+
+#layer_2 {
+  position: fixed;
+  top: 100px;
+  left: 500px;
+  right: 0;
+  width: 200px;
+  margin: auto;
+  fill:none;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+#layer_2_1 {
+  position: fixed;
+  top: 80px;
+  left: 600px;
+  right: 0;
+  width: 130px;
+  margin: auto;
+  fill:none;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+#layer_3 {
+  position: fixed;
+  top: 700px;
+  left: -600px;
+  right: 0;
+  width: 300px;
+  margin: auto;
+  fill:none;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+#layer_4 {
+  position: fixed;
+  bottom: -50px;
+  right: -50px;
+  width: 500px;
+  margin: auto;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 1px;
+  opacity: 0.7;
+}
+
+#layer_6 {
+  z-index: -10;
+  position: fixed;
+  top: 120px;
+  left: 0px;
+  width: 520px;
+  margin: auto;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 2px;
+  transform: rotate('-15deg');
+}
+
+#layer_7 {
+  z-index: -10;
+  position: fixed;
+  top: 380px;
+  right: -50px;
+  width: 600px;
+  margin: auto;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 2px;
+}
+
+#layer_8 {
+  z-index: -10;
+  position: fixed;
+  top: 100px;
+  right: 180px;
+  width: 230px;
+  margin: auto;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 3px;
+}
+
+#layer_9 {
+  z-index: -10;
+  position: fixed;
+  top: 100px;
+  right: 200px;
+  width: 230px;
+  margin: auto;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 3px;
+}
+
+#layer_10 {
+  z-index: -10;
+  position: fixed;
+  bottom: -50px;
+  left: -50px;
+  width: 400px;
+  transform: rotate(-15deg);
+  margin: auto;
+  fill: none;
+  stroke: rgb(139, 139, 134);
+  stroke-width: 1px;
+}
+
+#layer_11 {
+  z-index: -10;
+  position: fixed;
+  bottom: 50px;
+  left: 30px;
+  width: 600px;
+  /* transform: rotate(-15deg); */
+  margin: auto;
+  fill: none;
+  stroke: rgb(139, 139, 134);
+  stroke-width: 1px;
+}
+
+#layer_12 {
+  z-index: -10;
+  position: fixed;
+  top: 150px;
+  right: 150px;
+  width: 150px;
+  /* transform: rotate(-15deg); */
+  margin: auto;
+  fill: none;
+  stroke:#fff;
+  stroke-width: 4px;
+}

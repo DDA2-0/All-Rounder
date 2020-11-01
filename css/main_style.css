@@ -1,0 +1,124 @@
+html {
+      background-color: rgb(11, 5, 44);
+      color: rgb(247, 245, 243);
+      font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* Main-Visual */
+section > article.main_visual {
+      position: relative;
+      top:32vh;
+}
+section > article.main_visual > div{
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      /* align-items: center; */
+      margin:auto;
+}
+section > article.main_visual > div > h3 {
+      font-size: 150px;
+      font-weight: 700;
+      line-height: 130%;
+      letter-spacing: 25px;
+      font-family: 'Bebas Neue', cursive;
+      text-align: center;
+}
+section > article.main_visual > div > p {
+      font-size: 18px;
+      font-weight: 300;
+      text-align: center;
+      vertical-align: middle;
+}
+section > article.main_visual > div.circle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -9;
+      margin: auto;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background-color: #2600ff;
+
+}
+
+/* circle animation */
+
+.box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -5;
+      margin: auto;
+      width: 650px; height: 650px;
+}
+
+.loader {
+  width: 650px;
+  height: 650px;
+  display: inline-block;
+  margin-right: 10px;
+  position:relative;
+  vertical-align: top;
+}
+
+.circle-2 {
+  position: relative;
+}
+.circle-2:before {
+  border-radius: 50%;
+  border-top: 4px solid #0099ff71;
+  content: " ";
+   display: block;
+  position:absolute;
+  top: 5%;
+  left: 5%;
+  height: 90%;
+  width: 90%;
+  animation: rotation 1s linear infinite;
+}
+
+.circle-2:after {
+  border-radius: 50%;
+  border-bottom: 4px solid #0099ff71;
+  content: " ";
+   display: block;
+  height: 100%;
+  width: 100%;
+  animation: rotation-reverse 1s linear infinite;
+    position:absolute;
+  top: 0;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* footer */
+footer > div.about_me {
+      position : absolute;
+      bottom: 8%;
+      left: 10%;
+}
+footer > div.about_me > h4 {
+
+}

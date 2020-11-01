@@ -1,0 +1,785 @@
+
+/* Header */
+header {
+      width:100%; position: fixed; /* fixed를 사용하여 스크롤을 해도 헤더가 고정되도록 한다.*/
+      z-index:300; /* 헤더가 다른 요소 밑으로 깔리지 않게 하기 위해 z-index를 부여하여 위로 띄운다.*/
+      display: flex; text-align: center; margin-top: 30px;/* flex를 사용하여 요소들을 일렬로 배치한다.*/}
+header > div.menu > h1 > a {color: #330fff; display:block; text-decoration: none; letter-spacing: 2px;font-family: 'Bebas Neue', cursive;}
+header > div.menu > h1 {position: absolute;left:10%; top:20px;font-size: 30px; font-weight: 700;}
+
+/* SIDE MENU*/
+header > div.menu {position:relative; flex:1;}
+header > div.menu > h2.blind{
+      /* !important : 이전의 타입을 덮어쓴다. */
+      display:none!important; visibility:hidden!important; position:absolute;
+      margin:0; padding:0; clip:rect(0 0 0 0);
+      /*clip : absolute 또는 fixed일 때만 적용됨, 특정 부분만 보이게 한다.*/
+      pointer-events:none; /* a태그의 링크를 무효화*/}
+header > div.menu > b.btn-menu{
+      /* 눌렀을 때, 사이드 메뉴가 펼쳐지게 할 햄버거 버튼. */
+      display:block;position: absolute; right:9%;
+      padding:15px; border-radius: 50%; border: 1px solid #fff;
+      width:20px; height:20px; cursor:pointer; /* 마우스 커서가 클릭할 수 있는 모양(손가락)으로 바뀐다. 콘텐츠를 클릭할 수 있게 된다. */
+      transition: all .3s ease-in-out;}
+header > div.menu > b.btn-menu:hover{opacity: 0.5; transition: all .3s ease-in-out;}
+header > div.menu > b.btn-menu > span{
+      /* 햄버거 버튼 모양을 위한 span, border top과 bottom을 주어 위 아래 선을 만들어주었다. */
+      display:block; position:absolute;
+      width: 20px; height: 15px; top:33%;
+      border-top: 2px solid #f5f5f5;
+      border-bottom: 2px solid #f5f5f5;
+      /* transition 값을 지정하여 변화할 때 자연스럽게 변하도록 함. 선 색상에 transition 적용 */
+      -webkit-transition:border-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -moz-transition:border-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -o-transition:border-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -ms-transition:border-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      transition:border-color 180ms cubic-bezier(0.455,0.030,0.515,0.955)}
+.header > div.menu > b.btn-menu > span::before,.btn-menu > span::after{
+      /* 햄버거 버튼 모양을 만들기 위해 추가. 햄버거 버튼의 가운데 선으로 들어간다. */
+      content:'';display:block;position:absolute;
+      width:100%;height:0;top:-6px;
+      border-bottom:2px solid #f5f5f5;}
+/* 가운데 선 위치 지정. */
+header > div.menu > b.btn-menu span::after{transform:translateY(13px)}
+/* 마우스 hover 했을 때, 색상이 흰색으로 변하게 한다. transition 값 덕분에 자연스럽게 변함. */
+header > div.menu > b.btn-menu:hover span,.btn-menu:hover span::before,.btn-menu:hover span::after{border-color:#fff}
+
+/* MENU WINDOW */
+header > div.menu > div.side-menu{
+      /* 태그를 넘어간 부분을 안보이게 하기 위해 hidden 사용, 스크롤을 내려도 메뉴를 볼 수 있게 하기 위해 fixed 사용. */
+      overflow-x:hidden; overflow-y:auto; position:fixed; top:0; right: 0;
+      width:100vw; height:100vh; background-color:rgba(0, 0, 0, 0.89);
+      /* 위치를 변경하기 위한 코드 */
+      transform:translateX(100%);
+      /* transition 값을 지정하여 변화할 때 자연스럽게 변하도록 함. transform에 transition 적용 */
+      transition:transform 400ms cubic-bezier(0.785, 0.135, 0.150, 0.860)}
+/* 사이드 메뉴가 오픈되었을 때, X위치가 변경됨. 오른쪽에 넘어가 있어서 안 보이다가 open class가 부여되면 보이게 됨. 자바스크립트에서 적용 */
+header > div.menu > div.side-menu.open{transform:translateX(0);}
+header > div.menu > div.side-menu > ul{
+      /* 카테고리의 위치를 설정함. */
+      margin:0;padding:0;margin-top: 200px;margin-left:10%;}
+/* 카테고리 앞에 점?을 없어지게 만들고, 글자를 좌측정렬함. */
+header > div.menu > div.side-menu > ul > li {list-style-type: none; display:block; text-align: left;}
+header > div.menu > div.side-menu > ul > li > a{
+      /* 카테고리 위치 지정 및 글자 설정 */
+      vertical-align:top;
+      text-decoration:none;font-size:200px;
+      font-weight:700;letter-spacing:10px;
+      line-height:100%;opacity:0;transform:translateX(20px);}
+header > div.menu > div.side-menu > ul > li > a > span{color:#fff;}
+header > div.menu > div.side-menu > ul > li > a > span:hover{
+      /* 카테고리에 마우스 hover했을 때, 색상이 변하도록 함. */
+      color: #2100df;}
+header > div.menu > div.side-menu > ul > li a:hover span::after{width:100%}
+
+
+header > div.menu > div.side-menu .btn-close{
+      /* side메뉴를 닫게 하기 위한 닫힘 버튼*/
+      overflow:hidden;display:block;position:absolute;top:30px;right:9%;
+      width: 20px; height: 20px; padding:15px;cursor:pointer; border-radius: 50%; border: 1px solid #fff;
+      transform:translateX(0) rotate(0deg);
+      transition:all 400ms cubic-bezier(0.455,0.030,0.515,0.955)}
+/* header > div.menu > div.side-menu.open .btn-close{opacity:100;} */
+header > div.menu > div.side-menu .btn-close span{overflow:hidden;display:block;position:relative;width:100%;height:100%}
+header > div.menu > div.side-menu .btn-close span::before,.side-menu .btn-close span::after{
+      content: '';display:block;position:absolute;height:1px;width:200%;top:50%;left:-50%;
+      /* transition 값을 지정하여 변화할 때 자연스럽게 변하도록 함. 배경색 속성에 transition 적용. -> 엑스버튼의 색상이 자연스럽게 변하게 함. */
+      -webkit-transition:background-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -moz-transition:background-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -o-transition:background-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      -ms-transition:background-color 180ms cubic-bezier(0.455,0.030,0.515,0.955);
+      transition:background-color 180ms cubic-bezier(0.455,0.030,0.515,0.955)}
+header > div.menu > div.side-menu .btn-close span::before{
+      /* close 버튼의 x모양을 만들기 위해 rotate 값을 줌. "/" 에 해당, translateY도 함께 조정함으로 써 버튼의 가운데에 오게 함. */
+      background-color: #fff;
+      -webkit-transform:translateY(-50%) rotate(45deg);-moz-transform:translateY(-50%) rotate(45deg);
+      -ms-transform:translateY(-50%) rotate(45deg);-o-transform:translateY(-50%) rotate(45deg);
+      transform:translateY(-50%) rotate(45deg)}
+header > div.menu > div.side-menu .btn-close span::after{
+       /* close 버튼의 x모양을 만들기 위해 rotate 값을 줌. "\"에 해당, translateY도 함께 조정함으로 써 버튼의 가운데에 오게 함. */
+       background-color: #fff;
+      -webkit-transform:translateY(-50%) rotate(-45deg);-moz-transform:translateY(-50%) rotate(-45deg);
+      -ms-transform:translateY(-50%) rotate(-45deg);-o-transform:translateY(-50%) rotate(-45deg);
+      transform:translateY(-50%) rotate(-45deg)}    
+header > div.menu > div.side-menu .btn-close:hover{
+      /* 마우스 hover했을 때, 투명도 변경. */
+      opacity:0.5;}
+header > div.menu > div.side-menu .btn-close:hover span::before,.side-menu .btn-close:hover span::after{
+      /* 마우스 hover했을 때, x에 색 부여 */
+      background-color:#f5f5f5} 
+header > div.menu > div.side-menu li.ani > a{
+      /* side 메뉴의 카테고리가 자연스럽게 나타나게 하기 위해 opacity값과 animation 값을 부여.
+      자바스크립트를 통해 menu 버튼을 눌렀을 때 활성화 되도록 함. */
+      opacity:1.0;transform:translateX(0);animation:menuAni 250ms cubic-bezier(0.455,0.030,0.515,0.955)}
+
+@keyframes menuAni{
+    0%{opacity:0;transform:translateX(20px)}
+    100%{opacity:1.0;transform:translateX(0)}
+}
+
+#layer_5 {
+      position: fixed;
+      left: 8%; top: 30px;
+      z-index: -3;
+      width: 220px;
+      fill: none;
+      stroke: rgb(223, 220, 197);
+      stroke-width: 2px;
+}
+
+
+/* text color */
+.color-text-flow span,
+.color-text-flow-hover:hover span {
+  -webkit-animation-name: color-text-flow-keys;
+          animation-name: color-text-flow-keys;
+  -webkit-animation-duration: 50s;
+          animation-duration: 50s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes color-text-flow-keys {
+  0% {
+    color: #d65c97;
+  }
+  5% {
+    color: #5cd666;
+  }
+  10% {
+    color: #a55cd6;
+  }
+  15.0% {
+    color: #5c7cd6;
+  }
+  20% {
+    color: #d65c7a;
+  }
+  25% {
+    color: #81d65c;
+  }
+  30.0% {
+    color: #835cd6;
+  }
+  35% {
+    color: #685cd6;
+  }
+  40% {
+    color: #5c9dd6;
+  }
+  45% {
+    color: #5cd670;
+  }
+  50% {
+    color: #d6625c;
+  }
+  55.0% {
+    color: #d6835c;
+  }
+  60.0% {
+    color: #d6605c;
+  }
+  65% {
+    color: #be5cd6;
+  }
+  70% {
+    color: #5c8dd6;
+  }
+  75% {
+    color: #95d65c;
+  }
+  80% {
+    color: #d69d5c;
+  }
+  85.0% {
+    color: #d65c81;
+  }
+  90% {
+    color: #5cd666;
+  }
+  95% {
+    color: #d67e5c;
+  }
+  100% {
+    color: #64d65c;
+  }
+}
+@keyframes color-text-flow-keys {
+  0% {
+    color: #d65c97;
+  }
+  5% {
+    color: #5cd666;
+  }
+  10% {
+    color: #a55cd6;
+  }
+  15.0% {
+    color: #5c7cd6;
+  }
+  20% {
+    color: #d65c7a;
+  }
+  25% {
+    color: #81d65c;
+  }
+  30.0% {
+    color: #835cd6;
+  }
+  35% {
+    color: #685cd6;
+  }
+  40% {
+    color: #5c9dd6;
+  }
+  45% {
+    color: #5cd670;
+  }
+  50% {
+    color: #d6625c;
+  }
+  55.0% {
+    color: #d6835c;
+  }
+  60.0% {
+    color: #d6605c;
+  }
+  65% {
+    color: #be5cd6;
+  }
+  70% {
+    color: #5c8dd6;
+  }
+  75% {
+    color: #95d65c;
+  }
+  80% {
+    color: #d69d5c;
+  }
+  85.0% {
+    color: #d65c81;
+  }
+  90% {
+    color: #5cd666;
+  }
+  95% {
+    color: #d67e5c;
+  }
+  100% {
+    color: #64d65c;
+  }
+}
+.color-text-flow span:nth-of-type(1),
+.color-text-flow-hover:hover span:nth-of-type(1) {
+  -webkit-animation-delay: -19.8s;
+          animation-delay: -19.8s;
+}
+.color-text-flow span:nth-of-type(2),
+.color-text-flow-hover:hover span:nth-of-type(2) {
+  -webkit-animation-delay: -19.6s;
+          animation-delay: -19.6s;
+}
+.color-text-flow span:nth-of-type(3),
+.color-text-flow-hover:hover span:nth-of-type(3) {
+  -webkit-animation-delay: -19.4s;
+          animation-delay: -19.4s;
+}
+.color-text-flow span:nth-of-type(4),
+.color-text-flow-hover:hover span:nth-of-type(4) {
+  -webkit-animation-delay: -19.2s;
+          animation-delay: -19.2s;
+}
+.color-text-flow span:nth-of-type(5),
+.color-text-flow-hover:hover span:nth-of-type(5) {
+  -webkit-animation-delay: -19s;
+          animation-delay: -19s;
+}
+.color-text-flow span:nth-of-type(6),
+.color-text-flow-hover:hover span:nth-of-type(6) {
+  -webkit-animation-delay: -18.8s;
+          animation-delay: -18.8s;
+}
+.color-text-flow span:nth-of-type(7),
+.color-text-flow-hover:hover span:nth-of-type(7) {
+  -webkit-animation-delay: -18.6s;
+          animation-delay: -18.6s;
+}
+.color-text-flow span:nth-of-type(8),
+.color-text-flow-hover:hover span:nth-of-type(8) {
+  -webkit-animation-delay: -18.4s;
+          animation-delay: -18.4s;
+}
+.color-text-flow span:nth-of-type(9),
+.color-text-flow-hover:hover span:nth-of-type(9) {
+  -webkit-animation-delay: -18.2s;
+          animation-delay: -18.2s;
+}
+.color-text-flow span:nth-of-type(10),
+.color-text-flow-hover:hover span:nth-of-type(10) {
+  -webkit-animation-delay: -18s;
+          animation-delay: -18s;
+}
+.color-text-flow span:nth-of-type(11),
+.color-text-flow-hover:hover span:nth-of-type(11) {
+  -webkit-animation-delay: -17.8s;
+          animation-delay: -17.8s;
+}
+.color-text-flow span:nth-of-type(12),
+.color-text-flow-hover:hover span:nth-of-type(12) {
+  -webkit-animation-delay: -17.6s;
+          animation-delay: -17.6s;
+}
+.color-text-flow span:nth-of-type(13),
+.color-text-flow-hover:hover span:nth-of-type(13) {
+  -webkit-animation-delay: -17.4s;
+          animation-delay: -17.4s;
+}
+.color-text-flow span:nth-of-type(14),
+.color-text-flow-hover:hover span:nth-of-type(14) {
+  -webkit-animation-delay: -17.2s;
+          animation-delay: -17.2s;
+}
+.color-text-flow span:nth-of-type(15),
+.color-text-flow-hover:hover span:nth-of-type(15) {
+  -webkit-animation-delay: -17s;
+          animation-delay: -17s;
+}
+.color-text-flow span:nth-of-type(16),
+.color-text-flow-hover:hover span:nth-of-type(16) {
+  -webkit-animation-delay: -16.8s;
+          animation-delay: -16.8s;
+}
+.color-text-flow span:nth-of-type(17),
+.color-text-flow-hover:hover span:nth-of-type(17) {
+  -webkit-animation-delay: -16.6s;
+          animation-delay: -16.6s;
+}
+.color-text-flow span:nth-of-type(18),
+.color-text-flow-hover:hover span:nth-of-type(18) {
+  -webkit-animation-delay: -16.4s;
+          animation-delay: -16.4s;
+}
+.color-text-flow span:nth-of-type(19),
+.color-text-flow-hover:hover span:nth-of-type(19) {
+  -webkit-animation-delay: -16.2s;
+          animation-delay: -16.2s;
+}
+.color-text-flow span:nth-of-type(20),
+.color-text-flow-hover:hover span:nth-of-type(20) {
+  -webkit-animation-delay: -16s;
+          animation-delay: -16s;
+}
+.color-text-flow span:nth-of-type(21),
+.color-text-flow-hover:hover span:nth-of-type(21) {
+  -webkit-animation-delay: -15.8s;
+          animation-delay: -15.8s;
+}
+.color-text-flow span:nth-of-type(22),
+.color-text-flow-hover:hover span:nth-of-type(22) {
+  -webkit-animation-delay: -15.6s;
+          animation-delay: -15.6s;
+}
+.color-text-flow span:nth-of-type(23),
+.color-text-flow-hover:hover span:nth-of-type(23) {
+  -webkit-animation-delay: -15.4s;
+          animation-delay: -15.4s;
+}
+.color-text-flow span:nth-of-type(24),
+.color-text-flow-hover:hover span:nth-of-type(24) {
+  -webkit-animation-delay: -15.2s;
+          animation-delay: -15.2s;
+}
+.color-text-flow span:nth-of-type(25),
+.color-text-flow-hover:hover span:nth-of-type(25) {
+  -webkit-animation-delay: -15s;
+          animation-delay: -15s;
+}
+.color-text-flow span:nth-of-type(26),
+.color-text-flow-hover:hover span:nth-of-type(26) {
+  -webkit-animation-delay: -14.8s;
+          animation-delay: -14.8s;
+}
+.color-text-flow span:nth-of-type(27),
+.color-text-flow-hover:hover span:nth-of-type(27) {
+  -webkit-animation-delay: -14.6s;
+          animation-delay: -14.6s;
+}
+.color-text-flow span:nth-of-type(28),
+.color-text-flow-hover:hover span:nth-of-type(28) {
+  -webkit-animation-delay: -14.4s;
+          animation-delay: -14.4s;
+}
+.color-text-flow span:nth-of-type(29),
+.color-text-flow-hover:hover span:nth-of-type(29) {
+  -webkit-animation-delay: -14.2s;
+          animation-delay: -14.2s;
+}
+.color-text-flow span:nth-of-type(30),
+.color-text-flow-hover:hover span:nth-of-type(30) {
+  -webkit-animation-delay: -14s;
+          animation-delay: -14s;
+}
+.color-text-flow span:nth-of-type(31),
+.color-text-flow-hover:hover span:nth-of-type(31) {
+  -webkit-animation-delay: -13.8s;
+          animation-delay: -13.8s;
+}
+.color-text-flow span:nth-of-type(32),
+.color-text-flow-hover:hover span:nth-of-type(32) {
+  -webkit-animation-delay: -13.6s;
+          animation-delay: -13.6s;
+}
+.color-text-flow span:nth-of-type(33),
+.color-text-flow-hover:hover span:nth-of-type(33) {
+  -webkit-animation-delay: -13.4s;
+          animation-delay: -13.4s;
+}
+.color-text-flow span:nth-of-type(34),
+.color-text-flow-hover:hover span:nth-of-type(34) {
+  -webkit-animation-delay: -13.2s;
+          animation-delay: -13.2s;
+}
+.color-text-flow span:nth-of-type(35),
+.color-text-flow-hover:hover span:nth-of-type(35) {
+  -webkit-animation-delay: -13s;
+          animation-delay: -13s;
+}
+.color-text-flow span:nth-of-type(36),
+.color-text-flow-hover:hover span:nth-of-type(36) {
+  -webkit-animation-delay: -12.8s;
+          animation-delay: -12.8s;
+}
+.color-text-flow span:nth-of-type(37),
+.color-text-flow-hover:hover span:nth-of-type(37) {
+  -webkit-animation-delay: -12.6s;
+          animation-delay: -12.6s;
+}
+.color-text-flow span:nth-of-type(38),
+.color-text-flow-hover:hover span:nth-of-type(38) {
+  -webkit-animation-delay: -12.4s;
+          animation-delay: -12.4s;
+}
+.color-text-flow span:nth-of-type(39),
+.color-text-flow-hover:hover span:nth-of-type(39) {
+  -webkit-animation-delay: -12.2s;
+          animation-delay: -12.2s;
+}
+.color-text-flow span:nth-of-type(40),
+.color-text-flow-hover:hover span:nth-of-type(40) {
+  -webkit-animation-delay: -12s;
+          animation-delay: -12s;
+}
+.color-text-flow span:nth-of-type(41),
+.color-text-flow-hover:hover span:nth-of-type(41) {
+  -webkit-animation-delay: -11.8s;
+          animation-delay: -11.8s;
+}
+.color-text-flow span:nth-of-type(42),
+.color-text-flow-hover:hover span:nth-of-type(42) {
+  -webkit-animation-delay: -11.6s;
+          animation-delay: -11.6s;
+}
+.color-text-flow span:nth-of-type(43),
+.color-text-flow-hover:hover span:nth-of-type(43) {
+  -webkit-animation-delay: -11.4s;
+          animation-delay: -11.4s;
+}
+.color-text-flow span:nth-of-type(44),
+.color-text-flow-hover:hover span:nth-of-type(44) {
+  -webkit-animation-delay: -11.2s;
+          animation-delay: -11.2s;
+}
+.color-text-flow span:nth-of-type(45),
+.color-text-flow-hover:hover span:nth-of-type(45) {
+  -webkit-animation-delay: -11s;
+          animation-delay: -11s;
+}
+.color-text-flow span:nth-of-type(46),
+.color-text-flow-hover:hover span:nth-of-type(46) {
+  -webkit-animation-delay: -10.8s;
+          animation-delay: -10.8s;
+}
+.color-text-flow span:nth-of-type(47),
+.color-text-flow-hover:hover span:nth-of-type(47) {
+  -webkit-animation-delay: -10.6s;
+          animation-delay: -10.6s;
+}
+.color-text-flow span:nth-of-type(48),
+.color-text-flow-hover:hover span:nth-of-type(48) {
+  -webkit-animation-delay: -10.4s;
+          animation-delay: -10.4s;
+}
+.color-text-flow span:nth-of-type(49),
+.color-text-flow-hover:hover span:nth-of-type(49) {
+  -webkit-animation-delay: -10.2s;
+          animation-delay: -10.2s;
+}
+.color-text-flow span:nth-of-type(50),
+.color-text-flow-hover:hover span:nth-of-type(50) {
+  -webkit-animation-delay: -10s;
+          animation-delay: -10s;
+}
+.color-text-flow span:nth-of-type(51),
+.color-text-flow-hover:hover span:nth-of-type(51) {
+  -webkit-animation-delay: -9.8s;
+          animation-delay: -9.8s;
+}
+.color-text-flow span:nth-of-type(52),
+.color-text-flow-hover:hover span:nth-of-type(52) {
+  -webkit-animation-delay: -9.6s;
+          animation-delay: -9.6s;
+}
+.color-text-flow span:nth-of-type(53),
+.color-text-flow-hover:hover span:nth-of-type(53) {
+  -webkit-animation-delay: -9.4s;
+          animation-delay: -9.4s;
+}
+.color-text-flow span:nth-of-type(54),
+.color-text-flow-hover:hover span:nth-of-type(54) {
+  -webkit-animation-delay: -9.2s;
+          animation-delay: -9.2s;
+}
+.color-text-flow span:nth-of-type(55),
+.color-text-flow-hover:hover span:nth-of-type(55) {
+  -webkit-animation-delay: -9s;
+          animation-delay: -9s;
+}
+.color-text-flow span:nth-of-type(56),
+.color-text-flow-hover:hover span:nth-of-type(56) {
+  -webkit-animation-delay: -8.8s;
+          animation-delay: -8.8s;
+}
+.color-text-flow span:nth-of-type(57),
+.color-text-flow-hover:hover span:nth-of-type(57) {
+  -webkit-animation-delay: -8.6s;
+          animation-delay: -8.6s;
+}
+.color-text-flow span:nth-of-type(58),
+.color-text-flow-hover:hover span:nth-of-type(58) {
+  -webkit-animation-delay: -8.4s;
+          animation-delay: -8.4s;
+}
+.color-text-flow span:nth-of-type(59),
+.color-text-flow-hover:hover span:nth-of-type(59) {
+  -webkit-animation-delay: -8.2s;
+          animation-delay: -8.2s;
+}
+.color-text-flow span:nth-of-type(60),
+.color-text-flow-hover:hover span:nth-of-type(60) {
+  -webkit-animation-delay: -8s;
+          animation-delay: -8s;
+}
+.color-text-flow span:nth-of-type(61),
+.color-text-flow-hover:hover span:nth-of-type(61) {
+  -webkit-animation-delay: -7.8s;
+          animation-delay: -7.8s;
+}
+.color-text-flow span:nth-of-type(62),
+.color-text-flow-hover:hover span:nth-of-type(62) {
+  -webkit-animation-delay: -7.6s;
+          animation-delay: -7.6s;
+}
+.color-text-flow span:nth-of-type(63),
+.color-text-flow-hover:hover span:nth-of-type(63) {
+  -webkit-animation-delay: -7.4s;
+          animation-delay: -7.4s;
+}
+.color-text-flow span:nth-of-type(64),
+.color-text-flow-hover:hover span:nth-of-type(64) {
+  -webkit-animation-delay: -7.2s;
+          animation-delay: -7.2s;
+}
+.color-text-flow span:nth-of-type(65),
+.color-text-flow-hover:hover span:nth-of-type(65) {
+  -webkit-animation-delay: -7s;
+          animation-delay: -7s;
+}
+.color-text-flow span:nth-of-type(66),
+.color-text-flow-hover:hover span:nth-of-type(66) {
+  -webkit-animation-delay: -6.8s;
+          animation-delay: -6.8s;
+}
+.color-text-flow span:nth-of-type(67),
+.color-text-flow-hover:hover span:nth-of-type(67) {
+  -webkit-animation-delay: -6.6s;
+          animation-delay: -6.6s;
+}
+.color-text-flow span:nth-of-type(68),
+.color-text-flow-hover:hover span:nth-of-type(68) {
+  -webkit-animation-delay: -6.4s;
+          animation-delay: -6.4s;
+}
+.color-text-flow span:nth-of-type(69),
+.color-text-flow-hover:hover span:nth-of-type(69) {
+  -webkit-animation-delay: -6.2s;
+          animation-delay: -6.2s;
+}
+.color-text-flow span:nth-of-type(70),
+.color-text-flow-hover:hover span:nth-of-type(70) {
+  -webkit-animation-delay: -6s;
+          animation-delay: -6s;
+}
+.color-text-flow span:nth-of-type(71),
+.color-text-flow-hover:hover span:nth-of-type(71) {
+  -webkit-animation-delay: -5.8s;
+          animation-delay: -5.8s;
+}
+.color-text-flow span:nth-of-type(72),
+.color-text-flow-hover:hover span:nth-of-type(72) {
+  -webkit-animation-delay: -5.6s;
+          animation-delay: -5.6s;
+}
+.color-text-flow span:nth-of-type(73),
+.color-text-flow-hover:hover span:nth-of-type(73) {
+  -webkit-animation-delay: -5.4s;
+          animation-delay: -5.4s;
+}
+.color-text-flow span:nth-of-type(74),
+.color-text-flow-hover:hover span:nth-of-type(74) {
+  -webkit-animation-delay: -5.2s;
+          animation-delay: -5.2s;
+}
+.color-text-flow span:nth-of-type(75),
+.color-text-flow-hover:hover span:nth-of-type(75) {
+  -webkit-animation-delay: -5s;
+          animation-delay: -5s;
+}
+.color-text-flow span:nth-of-type(76),
+.color-text-flow-hover:hover span:nth-of-type(76) {
+  -webkit-animation-delay: -4.8s;
+          animation-delay: -4.8s;
+}
+.color-text-flow span:nth-of-type(77),
+.color-text-flow-hover:hover span:nth-of-type(77) {
+  -webkit-animation-delay: -4.6s;
+          animation-delay: -4.6s;
+}
+.color-text-flow span:nth-of-type(78),
+.color-text-flow-hover:hover span:nth-of-type(78) {
+  -webkit-animation-delay: -4.4s;
+          animation-delay: -4.4s;
+}
+.color-text-flow span:nth-of-type(79),
+.color-text-flow-hover:hover span:nth-of-type(79) {
+  -webkit-animation-delay: -4.2s;
+          animation-delay: -4.2s;
+}
+.color-text-flow span:nth-of-type(80),
+.color-text-flow-hover:hover span:nth-of-type(80) {
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+}
+.color-text-flow span:nth-of-type(81),
+.color-text-flow-hover:hover span:nth-of-type(81) {
+  -webkit-animation-delay: -3.8s;
+          animation-delay: -3.8s;
+}
+.color-text-flow span:nth-of-type(82),
+.color-text-flow-hover:hover span:nth-of-type(82) {
+  -webkit-animation-delay: -3.6s;
+          animation-delay: -3.6s;
+}
+.color-text-flow span:nth-of-type(83),
+.color-text-flow-hover:hover span:nth-of-type(83) {
+  -webkit-animation-delay: -3.4s;
+          animation-delay: -3.4s;
+}
+.color-text-flow span:nth-of-type(84),
+.color-text-flow-hover:hover span:nth-of-type(84) {
+  -webkit-animation-delay: -3.2s;
+          animation-delay: -3.2s;
+}
+.color-text-flow span:nth-of-type(85),
+.color-text-flow-hover:hover span:nth-of-type(85) {
+  -webkit-animation-delay: -3s;
+          animation-delay: -3s;
+}
+.color-text-flow span:nth-of-type(86),
+.color-text-flow-hover:hover span:nth-of-type(86) {
+  -webkit-animation-delay: -2.8s;
+          animation-delay: -2.8s;
+}
+.color-text-flow span:nth-of-type(87),
+.color-text-flow-hover:hover span:nth-of-type(87) {
+  -webkit-animation-delay: -2.6s;
+          animation-delay: -2.6s;
+}
+.color-text-flow span:nth-of-type(88),
+.color-text-flow-hover:hover span:nth-of-type(88) {
+  -webkit-animation-delay: -2.4s;
+          animation-delay: -2.4s;
+}
+.color-text-flow span:nth-of-type(89),
+.color-text-flow-hover:hover span:nth-of-type(89) {
+  -webkit-animation-delay: -2.2s;
+          animation-delay: -2.2s;
+}
+.color-text-flow span:nth-of-type(90),
+.color-text-flow-hover:hover span:nth-of-type(90) {
+  -webkit-animation-delay: -2s;
+          animation-delay: -2s;
+}
+.color-text-flow span:nth-of-type(91),
+.color-text-flow-hover:hover span:nth-of-type(91) {
+  -webkit-animation-delay: -1.8s;
+          animation-delay: -1.8s;
+}
+.color-text-flow span:nth-of-type(92),
+.color-text-flow-hover:hover span:nth-of-type(92) {
+  -webkit-animation-delay: -1.6s;
+          animation-delay: -1.6s;
+}
+.color-text-flow span:nth-of-type(93),
+.color-text-flow-hover:hover span:nth-of-type(93) {
+  -webkit-animation-delay: -1.4s;
+          animation-delay: -1.4s;
+}
+.color-text-flow span:nth-of-type(94),
+.color-text-flow-hover:hover span:nth-of-type(94) {
+  -webkit-animation-delay: -1.2s;
+          animation-delay: -1.2s;
+}
+.color-text-flow span:nth-of-type(95),
+.color-text-flow-hover:hover span:nth-of-type(95) {
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+.color-text-flow span:nth-of-type(96),
+.color-text-flow-hover:hover span:nth-of-type(96) {
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+.color-text-flow span:nth-of-type(97),
+.color-text-flow-hover:hover span:nth-of-type(97) {
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+.color-text-flow span:nth-of-type(98),
+.color-text-flow-hover:hover span:nth-of-type(98) {
+  -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+}
+.color-text-flow span:nth-of-type(99),
+.color-text-flow-hover:hover span:nth-of-type(99) {
+  -webkit-animation-delay: -0.2s;
+          animation-delay: -0.2s;
+}
+.color-text-flow span:nth-of-type(100),
+.color-text-flow-hover:hover span:nth-of-type(100) {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+/* 배경에 깔릴 별 */
+#star_background
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:-100;
+}
