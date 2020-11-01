@@ -17,7 +17,7 @@
             setTimeout(function(){
                   $('#loading_wrap').css({
                         'z-index': -999
-                  });
+                  }); 
             },2500);
       
 })(jQuery);
