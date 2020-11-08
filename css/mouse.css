@@ -18,6 +18,7 @@
     animation: animRotate 2s infinite;
 }
 
+
 @keyframes animCursor{
     from{ transform: scale(1.5); }
     to{ transform: scale(1); }

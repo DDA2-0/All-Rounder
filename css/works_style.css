@@ -1,6 +1,7 @@
 html {
       background-color: rgb(11, 5, 44);
-      color: rgb(247, 245, 243);
+	color: rgb(247, 245, 243);
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 section{
@@ -14,188 +15,126 @@ section{
     -webkit-align-items: center;
 }
 
-/* Slider Style
---------------------------------------*/
-.cd-slider {
+
+.works_tit{
 	position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-	width: 70%;
-	height: 30rem;
-	overflow: hidden;
+	height: 720px;	
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	margin: auto;
+	text-align: center;
+	font-size: 100px;
+	font-weight: 900;
+	line-height: 120px;
 }
-.cd-slider li {
-	position: absolute;
-  top: 0;
-  left: 0;
-	width: 100%;
-	height: 100%;
-	visibility: hidden;
-	transition: visibility 0s 1s;
-  will-change: visibility;
+.works_tit ul li a{
+	transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
 }
-.image {
+.works_tit ul li a:hover{
+/* 카테고리에 마우스 hover했을 때, 색상이 변하도록 함. */
+cursor: pointer;
+color: #2100df;
+transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);}
+
+.works{
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 65%;
-	height: 100%;
-	background-size: cover;
-	background-position: 50% 50%;
-	clip: rect(0, 80rem, 50rem, 80rem);
-	transition: clip .6s ease-in-out .6s;
-  	will-change: clip;
+	right: 0;
+	bottom: 0;
+	width: fit-content;
+	height: 500px;margin: auto;
 }
 
-.content {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	padding: 2rem 0 0 2rem;
+.thumbnail{
+	float: left;
+	transform: translateY(20%);
+	transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+	width: 700px; height: 500px; margin-right: 50px;
+}
+
+#portfolio1 .thumbnail {background-image: url(../image/portfolio1.png); background-size: cover;}
+#portfolio2 .thumbnail {background-image: url(../image/portfolio2.png); background-size: cover;}
+#portfolio3 .thumbnail {background-image: url(../image/portfolio3.png); background-size: cover;}
+#portfolio4 .thumbnail {background-image: url(../image/portfolio4.png); background-size: cover;}
+#portfolio5 .thumbnail {background-image: url(../image/portfolio5.png); background-size: cover;}
+#portfolio6 .thumbnail {background-image: url(../image/portfolio6.png);background-size: cover;} 
+
+.works_info{
+	width: 500px;
+	height: 500px;
+	float:left;
+}
+.works_info h3 {
 	font-size: 50px;
-	text-align: right;
-}
-.content h2 {
-	text-overflow: ellipsis;
-	overflow: hidden;
+	font-weight: 700;
+	margin-bottom: 20px;
+	color: rgb(255, 123, 0);
 	transform: translateY(-30%);
+	transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 	opacity: 0;
-	transition: transform .4s, opacity .4s;
-  	will-change: transform, opacity;
 }
-.content a {
-	display: block;
-	font-size: 16px;
-	text-transform: lowercase;
-	padding: 0.5rem;
-	opacity: 0;
-	transform: translateY(-100%);
-	transition: transform .4s .1s, opacity .4s .1s;
-	will-change: transform, opacity;
-	text-decoration: none;
-	color:rgb(255, 208, 0);
-}
-.content p {
-  display: inline-block;
-  text-align: left;
+.works_info p{
 	font-size: 14px;
-  text-transform: lowercase;
-  margin: 15px 0;
-  line-height: 18px;
-  width: 32%;
+	line-height: 20px;
+	font-weight: lighter;
+	margin-top: 30px;
+	transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 	opacity: 0;
-	transform: translateY(-100%);
-	transition: transform .4s .1s, opacity .4s .1s;
-  will-change: transform, opacity;
 }
-/* Current Slide 
--------------------------------------*/
-li.current {
-	visibility: visible;
-	transition-delay: 0s;
-}
-li.current .image {
-	clip: rect(0, 80rem, 50rem, 0);
-}
-li.current .content h2 {
-	transform: translateY(0);
-	opacity: 1;
-	transition-delay: .6s;
-}
-li.current .content a {
-	transform: translateY(0);
-	opacity: 1;
-	transition-delay: .9s;
-}
-li.current .content p {
-	transform: translateY(0);
-	opacity: 1;
-  transition-delay: .8s;
-  color:rgb(207, 207, 207);
-}
-/* Prev Slide 
-------------------------------------*/
-li.prev_slide .image {
-	clip: rect(0, 0, 50rem, 0);
-}
-nav {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-  background-color: none;
-	z-index: 2;
-}
-.prev, .next, .counter {
-	vertical-align: middle;
-}
-.prev {
-  margin-right: 30px;
-}
-.prev, .next {
-	position: relative;
-	display: inline-block;
-	height: 50px;
-  width: 50px;
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-}
-.prev::before, .next::before {
-	content: '';
-	position: absolute;
-	top: 50%;
-  left: 0;
+
+.works_info h4 {font-size: 30px;
 	transform: translateY(-50%);
-	border: 10px solid transparent;
-	border-right-width: 20px;
-	border-right-color: #fff;
-	border-left-width: 0;
-	width: 0;
-	height: 0;
+	transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+	opacity: 0;
 }
-.prev::after, .next::after {
-	content: '';
+
+.works_info .button{
+	width: 200px;
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%) translateZ(0);
-	left: .5rem;
-	background: #fff;
-	height: .1rem;
-	min-height: 1px;
-	width: 2.5rem;
-	transition: width .3s;
+	bottom:0;
+	opacity: 0;
+	transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+	transform: translateY(30%);
 }
-.next::before {
-	right: 0;
-  	left: auto;
-	border-left-width: 20px;
-	border-left-color: #fff;
-	border-right-width: 0;
+.works_info h4 span{
+	color:#cdff44;
+	font-weight: 800;
 }
-.next::after {
-	right: .5rem;
-	left: auto;
+.works {
+	display: none;
 }
-.counter {
-	display: inline-block;
-	font-size: 4rem;
-	font-family: serif;
-	font-style: italic;
+#portfolio1{
+	opacity: 0;
 }
-.counter span:last-child::before {
-	content: '/';
-	margin: 0 1rem;
+#portfolio2{
+	opacity: 0;
 }
-.prev:hover::after, .next:hover::after {
-	width: 3.5rem;
+#portfolio3{
+	opacity: 0;
 }
-@media screen and ( max-width: 550px ) {
-	.image { width: 100%; }
-	.content { padding-right: 2rem; }
-	nav { left: 0; right: auto; }
+#portfolio4{
+	opacity: 0;
+}
+#portfolio5{
+	opacity: 0;
+}
+#portfolio6{
+	opacity: 0;
+}
+
+.back{
+	font-size: 20px;
+	cursor: pointer;
+	position: absolute;
+	bottom:0; right: 0;
+	text-transform: uppercase;
+	color:#ff31dd;
+	font-weight: 800;
+	transform: translateX(100%);
+	opacity: 0;
+	transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
