@@ -150,4 +150,9 @@ transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);}
   /*스타일입력*/
   html,body{width: 100vw;}
   .works_tit{font-size: 3rem; line-height: 150%; height: fit-content;}
+  .thumbnail{width: 90vw; height: 30vh; float: none;}
+  .works_info{width: 90vw; float:none;}
+  .works_info .button, .back {position: relative; margin: 20px 0;}
+  .button{margin-top: 20px;}
+  .works{margin-left: 5vw;}
 }
