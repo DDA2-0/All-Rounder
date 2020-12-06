@@ -45,6 +45,8 @@ section > article.main_visual > div.profile-hi > div.profile > a {text-decoratio
 	transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+
+
 /* PC (해상도 1024px)*/
 @media all and (min-width:1024px) { /*스타일입력*/}
 
@@ -63,3 +65,4 @@ section > article.main_visual > div.profile-hi > div.profile > a {text-decoratio
         margin: 50px 0 30px 0;
   }
 }
+
