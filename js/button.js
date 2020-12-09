@@ -1,3 +1,5 @@
+// button에 마우스 hover했을 때, 애니메이션이 나타나도록 하기 위한 코드.
+
 var body = document.body;
 var btn = document.querySelectorAll('.button')[0];
 

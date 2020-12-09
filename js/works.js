@@ -1,5 +1,5 @@
 (function($) {
-
+	// title을 클릭했을 때, title 목록은 안 보이게 하고 콘텐츠가 애니메이션과 함께 나타난다.
 	$('.works_title').click(function(){
 		$('.works_tit').css({
 			'opacity':'0',
@@ -43,6 +43,7 @@
 			})
 		},1300);
 	});
+	// 타이틀에 맞는 info가 나타나게 하는 코드
 	$('#works1').click(function(){
 		$('#portfolio1').css({
 			'display':'inline-block',
@@ -110,6 +111,7 @@
 		}, 600);
 	});
 
+	// 뒤로가기 버튼을 눌렀을 때, 단순히 info가 사라지고 title이 나타나는 것이 아니라 다시 title을 눌렀을 때 동일한 애니메이션이 동작하게 하기 위해 translate값을 복구.
 	$('.back').click(function () { 
 		$('.works').css({
 			'opacity':'0',
