@@ -1,4 +1,4 @@
-
+/* 페이지를 이동할 때마다 나타나는 loading 화면 */
 #loading_wrap{
   background-color: rgb(11, 5, 44);
   width: 100vw; height: 100vh;

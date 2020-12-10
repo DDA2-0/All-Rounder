@@ -118,7 +118,7 @@ header > div.menu > div.side-menu li.ani > a{
 }
 
 
-/* text color */
+/* 로고 텍스트와 index 메인 텍스트에 사용한 컬러 효과 */
 .color-text-flow span,
 .color-text-flow-hover:hover span {
   -webkit-animation-name: color-text-flow-keys;
