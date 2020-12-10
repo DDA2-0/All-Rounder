@@ -53,6 +53,16 @@
   opacity: 0.7;
 }
 
+#layer_5 {
+  position: fixed;
+  left: 8%; top: 30px;
+  z-index: -3;
+  width: 220px;
+  fill: none;
+  stroke: rgb(223, 220, 197);
+  stroke-width: 2px;
+}
+
 #layer_6 {
   z-index: -10;
   position: fixed;
