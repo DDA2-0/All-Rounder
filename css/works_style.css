@@ -61,7 +61,7 @@ transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);}
 #portfolio3 .thumbnail {background-image: url(../image/portfolio3.png); background-size: cover;}
 #portfolio4 .thumbnail {background-image: url(../image/portfolio4.png); background-size: cover;}
 #portfolio5 .thumbnail {background-image: url(../image/portfolio5.png); background-size: cover;}
-#portfolio6 .thumbnail {background-image: url(../image/portfolio6.png);background-size: cover;}  
+#portfolio6 .thumbnail {background-image: url(../image/portfolio6.png); background-size: cover;}  
 
 .works_info{
 	width: 500px;
